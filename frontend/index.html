@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuxeWood — Premium Furniture Store</title>
+  <meta name="description"
+    content="Discover handcrafted luxury furniture for your home. Sofas, beds, chairs, and tables crafted with premium materials.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <style>
+    /* Inline icon font substitute */
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Page Loader -->
+  <div id="page-loader">
+    <div class="loader-logo">Luxe<span>Wood</span></div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <a href="/" class="nav-logo">Luxe<span>Wood</span></a>
+    <div class="nav-links">
+      <a href="/" class="active">Home</a>
+      <a href="/shop">Shop</a>
+      <a href="#categories">Collections</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn" id="cart-btn" aria-label="Cart">
+        🛒
+        <span class="cart-badge" id="cart-badge" style="display:none">0</span>
+      </button>
+      <a href="/login" class="btn btn-primary btn-sm" id="nav-login-link">Sign In</a>
+      <a href="/dashboard" class="btn btn-ghost btn-sm" id="nav-dashboard-link" style="display:none">My Account</a>
+      <a href="/admin" class="btn btn-outline btn-sm" id="nav-admin-link" style="display:none">Admin</a>
+      <button class="btn btn-ghost btn-sm" id="nav-logout-btn" style="display:none" onclick="logout()">Logout</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Backdrop -->
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="/">🏠 Home</a>
+    <a href="/shop">🛋 Shop</a>
+    <a href="#categories">📦 Collections</a>
+    <a href="#contact">✉️ Contact</a>
+    <hr class="mobile-nav-divider">
+    <a href="/login" id="mobile-login">🔑 Sign In</a>
+    <a href="/dashboard" id="mobile-dashboard" style="display:none">👤 My Account</a>
+    <a href="/admin" id="mobile-admin" style="display:none">⚙️ Admin Panel</a>
+    <button id="mobile-logout" class="mobile-nav-logout" style="display:none" onclick="logout()">🚪 Sign Out</button>
+  </div>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="cart-close" id="cart-close">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span class="amount" id="cart-subtotal-amount">₹0</span>
+      </div>
+      <a href="/shop" class="btn btn-primary w-full" style="justify-content:center">Checkout →</a>
+    </div>
+  </div>
+
+  <!-- ═══ HERO ════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-blob hero-blob-1"></div>
+      <div class="hero-blob hero-blob-2"></div>
+    </div>
+    <div class="hero-content container">
+      <div class="hero-text">
+        <div class="hero-badge reveal">✦ Handcrafted Since 2008</div>
+        <h1 class="hero-title reveal delay-1">
+          Where Every Room<br>
+          Tells a <em>Story</em>
+        </h1>
+        <p class="hero-desc reveal delay-2">
+          Discover our curated collection of premium furniture — each piece crafted with intention, designed to last a
+          lifetime, and priced with honesty.
+        </p>
+        <div class="hero-actions reveal delay-3">
+          <a href="/shop" class="btn btn-primary btn-lg">Explore Collection →</a>
+          <a href="#categories" class="btn btn-outline btn-lg">Browse Categories</a>
+        </div>
+        <div class="hero-stats reveal delay-4">
+          <div class="stat"><span class="stat-num">2,400+</span><span class="stat-label">Happy Homes</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">150+</span><span class="stat-label">Products</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">18yr</span><span class="stat-label">Craftsmanship</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal-right delay-2">
+        <div class="hero-img-wrapper">
+          <img data-src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&q=80" src=""
+            alt="Luxury Velvet Sofa" class="hero-img">
+          <div class="hero-float-card">
+            <span class="float-emoji">🏆</span>
+            <div>
+              <div class="float-title">Award Winning</div>
+              <div class="float-sub">Design Excellence 2025</div>
+            </div>
+          </div>
+          <div class="hero-float-card hero-float-card-2">
+            <span class="float-emoji">🌿</span>
+            <div>
+              <div class="float-title">Eco Certified</div>
+              <div class="float-sub">100% Sustainable Wood</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══ MARQUEE STRIP ══════════════════════════════════════ -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>❖ Free Shipping Over ₹15,000</span>
+      <span>❖ 30-Day Returns</span>
+      <span>❖ 5-Year Warranty</span>
+      <span>❖ Handcrafted Quality</span>
+      <span>❖ White Glove Delivery</span>
+      <span>❖ Free Shipping Over ₹15,000</span>
+      <span>❖ 30-Day Returns</span>
+      <span>❖ 5-Year Warranty</span>
+      <span>❖ Handcrafted Quality</span>
+      <span>❖ White Glove Delivery</span>
+    </div>
+  </div>
+
+  <!-- ═══ CATEGORIES ═════════════════════════════════════════ -->
+  <section class="section" id="categories">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="eyebrow">Collections</div>
+        <h2 class="section-title">Shop by Category</h2>
+        <p class="section-subtitle mt-md">Every category, curated with an eye for enduring beauty and purposeful
+          function.</p>
+      </div>
+      <div class="categories-grid">
+        <div class="cat-card reveal delay-1" onclick="window.location='/shop?category=Sofa'">
+          <div class="cat-img-wrap">
+            <img data-src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80" src="" alt="Sofas"
+              loading="lazy">
+          </div>
+          <div class="cat-body">
+            <h3>Sofas</h3>
+            <p>12 products</p>
+            <span class="cat-arrow">→</span>
+          </div>
+        </div>
+        <div class="cat-card reveal delay-2" onclick="window.location='/shop?category=Chair'">
+          <div class="cat-img-wrap">
+            <img data-src="https://images.unsplash.com/photo-1592078615290-033ee584e267?w=600&q=80" src="" alt="Chairs"
+              loading="lazy">
+          </div>
+          <div class="cat-body">
+            <h3>Chairs</h3>
+            <p>18 products</p>
+            <span class="cat-arrow">→</span>
+          </div>
+        </div>
+        <div class="cat-card reveal delay-3" onclick="window.location='/shop?category=Table'">
+          <div class="cat-img-wrap">
+            <img data-src="https://images.unsplash.com/photo-1549497538-303791108f95?w=600&q=80" src="" alt="Tables"
+              loading="lazy">
+          </div>
+          <div class="cat-body">
+            <h3>Tables</h3>
+            <p>9 products</p>
+            <span class="cat-arrow">→</span>
+          </div>
+        </div>
+        <div class="cat-card reveal delay-4" onclick="window.location='/shop?category=Bed'">
+          <div class="cat-img-wrap">
+            <img data-src="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=600&q=80" src="" alt="Beds"
+              loading="lazy">
+          </div>
+          <div class="cat-body">
+            <h3>Beds</h3>
+            <p>7 products</p>
+            <span class="cat-arrow">→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURED PRODUCTS ══════════════════════════════════ -->
+  <section class="section featured-section" id="featured">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="eyebrow">Handpicked</div>
+        <h2 class="section-title">Featured Pieces</h2>
+        <p class="section-subtitle mt-md">Our most loved, most refined, most talked-about furniture this season.</p>
+      </div>
+      <div class="products-grid" id="featured-grid">
+        <!-- Populated by JS -->
+      </div>
+      <div class="text-center mt-lg reveal">
+        <a href="/shop" class="btn btn-outline btn-lg">View All Products →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BRAND STORY ════════════════════════════════════════ -->
+  <section class="brand-story section">
+    <div class="container">
+      <div class="brand-story-grid">
+        <div class="brand-story-imgs reveal-left">
+          <div class="bs-img-main">
+            <img data-src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700&q=80" src=""
+              alt="Craftsmanship" loading="lazy">
+          </div>
+          <div class="bs-img-secondary">
+            <img data-src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=400&q=80" src="" alt="Detail"
+              loading="lazy">
+          </div>
+          <div class="bs-years-badge reveal-scale delay-3">
+            <span class="years-num">18</span>
+            <span class="years-label">Years of Craft</span>
+          </div>
+        </div>
+        <div class="brand-story-text reveal-right">
+          <div class="eyebrow">Our Story</div>
+          <h2 class="section-title">Furniture That<br>Outlives Trends</h2>
+          <p>We started LuxeWood with one simple belief: your furniture should be the last furniture you ever buy. Each
+            piece is handcrafted by skilled artisans using sustainably sourced solid woods, premium fabrics, and refined
+            metal work.</p>
+          <p>We reject the disposable. We embrace the durable. Every joint, every stitch, every finish is an act of love
+            for the craft — and respect for your home.</p>
+          <div class="brand-pillars">
+            <div class="pillar"><span class="pillar-icon">🌲</span>
+              <div><strong>Sustainable</strong>
+                <p>FSC-certified wood sources</p>
+              </div>
+            </div>
+            <div class="pillar"><span class="pillar-icon">🤝</span>
+              <div><strong>Artisan Made</strong>
+                <p>Master craftspeople only</p>
+              </div>
+            </div>
+            <div class="pillar"><span class="pillar-icon">♾</span>
+              <div><strong>Lifetime Quality</strong>
+                <p>5-year structural warranty</p>
+              </div>
+            </div>
+          </div>
+          <a href="/shop" class="btn btn-primary btn-lg">Shop the Collection →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TESTIMONIALS ════════════════════════════════════════ -->
+  <section class="testi-section section">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="eyebrow">Reviews</div>
+        <h2 class="section-title">Loved by Homeowners</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card glass-card reveal delay-1">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"The Velvet Sofa is everything I dreamed of. The quality is extraordinary — it looks
+            even better in person. My living room has been completely transformed."</p>
+          <div class="testi-author">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah M." class="testi-photo">
+            <div><strong>Sarah M.</strong><span>Interior Designer, Mumbai</span></div>
+          </div>
+        </div>
+        <div class="testi-card glass-card reveal delay-2">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"The Nordic Oak Dining Table arrived perfectly packaged. Assembly was smooth and the
+            finish is flawless. Worth every rupee — my family absolutely loves it!"</p>
+          <div class="testi-author">
+            <img src="https://prathameshgiri.in/assets/hero.img.jpeg" alt="Prathamesh Giri" class="testi-photo"
+              onerror="this.src='https://ui-avatars.com/api/?name=Prathamesh+Giri&background=8B5E3C&color=fff&size=60'">
+            <div><strong>Prathamesh Giri</strong><span>Full-Stack Developer, Pune</span></div>
+          </div>
+        </div>
+        <div class="testi-card glass-card reveal delay-3">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Customer service was incredible. They helped me pick the right pieces for my space and
+            the delivery team was exceptional. This is my forever furniture store."</p>
+          <div class="testi-author">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya R." class="testi-photo">
+            <div><strong>Priya R.</strong><span>Homeowner, Bengaluru</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT / NEWSLETTER ═══════════════════════════════ -->
+  <section class="contact-section section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <div class="eyebrow">Get in Touch</div>
+          <h2 class="section-title">We'd Love to<br>Hear From You</h2>
+          <p>Whether you need design advice or have questions about an order, our team is here to help.</p>
+          <div class="contact-details">
+            <div class="contact-item"><span>📍</span><span>42 Artisan Lane, Brooklyn, NY 11201</span></div>
+            <div class="contact-item"><span>📞</span><span>+1 (212) 555-0147</span></div>
+            <div class="contact-item"><span>✉️</span><span>hello@luxewood.com</span></div>
+            <div class="contact-item"><span>🕐</span><span>Mon–Sat: 9am–7pm EST</span></div>
+          </div>
+        </div>
+        <div class="contact-form-wrap glass-card reveal-right">
+          <form id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="cf-name" placeholder="Jane Smith" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="cf-email" placeholder="jane@example.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <input type="text" class="form-control" id="cf-subject" placeholder="Order inquiry, design help…">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" id="cf-message" rows="4" placeholder="Tell us how we can help…"
+                required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-full" style="justify-content:center">Send Message ✉️</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ══════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">Luxe<span>Wood</span></div>
+          <p>Handcrafted furniture for homes that deserve lasting beauty. We believe every piece should be worth passing
+            down.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-btn">𝕏</a>
+            <a href="#" class="footer-social-btn">in</a>
+            <a href="#" class="footer-social-btn">📸</a>
+            <a href="#" class="footer-social-btn">▶</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="/shop?category=Sofa">Sofas</a></li>
+            <li><a href="/shop?category=Chair">Chairs</a></li>
+            <li><a href="/shop?category=Table">Tables</a></li>
+            <li><a href="/shop?category=Bed">Beds</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#categories">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Track Order</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 LuxeWood. All rights reserved.</p>
+        <p style="color:var(--clr-brown);font-weight:600">Designed &amp; Developed by Alfiya Ekambe 🎨</p>
+        <p>Privacy Policy · Terms of Service</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/home.js"></script>
+</body>
+
+</html>
