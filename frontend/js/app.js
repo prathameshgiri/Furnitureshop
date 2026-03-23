@@ -39,7 +39,16 @@ async function apiFetch(endpoint, options = {}) {
             ...restOptions
         });
         const data = await res.json();
-        if (!res.ok) throw new Error(data.message || 'Request failed');
+        if (!res.ok) {
+            if (res.status === 401 || res.status === 403) {
+                if (data.message === 'Invalid or expired token.' || data.message === 'Access denied. No token provided.') {
+                    Auth.clearSession();
+                    Cart.clear();
+                    window.location.href = '/login';
+                }
+            }
+            throw new Error(data.message || 'Request failed');
+        }
         return data;
     } catch (err) {
         throw err;

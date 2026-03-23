@@ -14,10 +14,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!Auth.isLoggedIn()) {
     window.location.href = '/login'; return;
   }
-  // ── Logged-in user (not admin) → User Dashboard ───────────
+  // ── Logged-in user (not admin) → Logout & Login page ────────
   if (!Auth.isAdmin()) {
     showToast('🚫 Access Denied. Admin only area.', 'error');
-    setTimeout(() => window.location.href = '/dashboard', 1000);
+    Auth.clearSession();
+    setTimeout(() => window.location.href = '/login', 1000);
     return;
   }
 

@@ -28,7 +28,8 @@
 **LuxeWood** is a fully functional premium furniture e-commerce website with:
 - A beautiful **user-facing storefront** for browsing and purchasing furniture
 - A powerful **admin panel** for managing orders, users, products, and messages
-- **Role-based authentication** (JWT) separating user and admin access
+- **Strict Port Isolation** (Port 5001) ensuring the admin environment is fully insulated from the user storefront
+- **Role-based authentication** (JWT) separating user and admin access with robust fail-safes
 - Indian Rupee (₹) pricing throughout
 - Product reviews with reviewer photos
 - Order placement and order tracking for users
@@ -53,6 +54,7 @@
 - View all registered users
 - View all contact messages
 - Responsive admin panel with sidebar navigation
+- **Secure Architecture:** Admin panel securely runs on a separate port with strict HTML request blocking to prevent user-site crossover and infinite redirect loops.
 
 ### 🎨 Design Features
 - Luxury earth-tone color palette (wood brown, beige, charcoal)
@@ -218,7 +220,7 @@ npx nodemon server.js
 | User Shop   | http://localhost:5000                 |
 | Admin Panel | http://localhost:5001/admin           |
 
-> **Pro Tip:** Open both in separate browser tabs. Since they run on different ports, they have **completely isolated sessions** — you can be logged in as a user AND admin simultaneously!
+> **Pro Tip:** Open both in separate browser tabs. Since they run on different ports, they have **completely isolated sessions** — you can be logged in as a user AND admin simultaneously! The Admin server (Port 5001) is strictly guarded and explicitly blocks all user-facing HTML files.
 
 ---
 
