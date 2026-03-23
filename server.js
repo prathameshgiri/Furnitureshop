@@ -73,8 +73,42 @@ app.listen(PORT, () => {
   console.log(`🔑  Admin: alfiya@admin.com / alfiya123\n`);
 });
 
+// ── Setup Admin-Only App on Admin Port ───────────────────────
+const adminApp = express();
+adminApp.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Block user-side HTML pages.
+adminApp.use((req, res, next) => {
+    if (req.path.endsWith('.html')) {
+        return res.redirect('/admin');
+    }
+    next();
+});
+
+// Provide access to static frontend files (js, css, images).
+adminApp.use(express.static(path.join(__dirname, 'frontend'), { index: false }));
+
+// Admin panel explicit route
+adminApp.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'admin.html'));
+});
+
+// Admin login explicitly allowed since localStorage is isolated
+adminApp.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'login.html'));
+});
+
+// 404/Blocker for user-side HTML routes, redirect everything else to /admin
+adminApp.use((req, res) => {
+  res.redirect('/admin');
+});
+
 // Admin panel on separate port (isolated localStorage = no session conflict)
-app.listen(ADMIN_PORT, () => {
+adminApp.listen(ADMIN_PORT, () => {
   console.log(`⚙️   Admin Panel (separate session) → http://localhost:${ADMIN_PORT}/admin`);
   console.log(`    Open this in a new tab alongside the shop!\n`);
 });
