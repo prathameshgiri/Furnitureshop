@@ -30,7 +30,7 @@ const register = async (req, res) => {
 
         const token = jwt.sign(
             { id: newUser.id, email: newUser.email, name: newUser.name, role: newUser.role },
-            process.env.JWT_SECRET,
+            process.env.JWT_SECRET || 'furniture_shop_secret_key_2024',
             { expiresIn: '7d' }
         );
 
@@ -59,7 +59,7 @@ const login = async (req, res) => {
 
         const token = jwt.sign(
             { id: user.id, email: user.email, name: user.name, role: user.role },
-            process.env.JWT_SECRET,
+            process.env.JWT_SECRET || 'furniture_shop_secret_key_2024',
             { expiresIn: '7d' }
         );
 
