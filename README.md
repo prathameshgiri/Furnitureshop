@@ -222,6 +222,12 @@ npx nodemon server.js
 
 > **Pro Tip:** Open both in separate browser tabs. Since they run on different ports, they have **completely isolated sessions** — you can be logged in as a user AND admin simultaneously! The Admin server (Port 5001) is strictly guarded and explicitly blocks all user-facing HTML files.
 
+### ☁️ Deployment (e.g., Render)
+
+The project is fully pre-configured to be deployed natively on cloud platforms like Render.
+- Frontend API URLs dynamically adjust (`/api` vs `http://localhost:5000/api`) based on whether you are running the project locally or accessed via the deployed cloud URL.
+- Ensure only `PORT` environment variable is required by your hosting provider (Render automatically assigns one).
+
 ---
 
 ## 🔐 Demo Credentials
